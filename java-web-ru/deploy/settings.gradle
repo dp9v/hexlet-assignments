@@ -1,1 +1,3 @@
 rootProject.name = 'deploy'
+
+java.runtime.version=17
