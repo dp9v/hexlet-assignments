@@ -32,6 +32,7 @@ class AppTest {
 
     @BeforeAll
     public static void setup() throws IOException, ParseException, LifecycleException {
+
         app = App.getApp(0);
         app.start();
         port = app.getConnector().getLocalPort();
