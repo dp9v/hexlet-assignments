@@ -37,16 +37,6 @@ class AppTest {
     }
     // END
 
-    // Между тестами база данных очищается
-    // Благодаря этому тесты не влияют друг на друга
-    @BeforeEach
-    void beforeEach() {
-        Database db = DB.getDefault();
-        db.truncate("user");
-        User existingUser = new User("Wendell", "Legros", "a@a.com", "123456");
-        existingUser.save();
-    }
-
     @Test
     void testUsers() {
 
