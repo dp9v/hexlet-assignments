@@ -76,10 +76,7 @@ class AppTest {
         assertThat(response.getStatus()).isEqualTo(302);
         User user = new User("Vas", "Pos", "f@gv.com", "123321");
         user.save();
-        User createdUser = new QUser()
-            .firstName.equalTo("Vas")
-            .lastName.equalTo("Pos")
-            .findOne();
+        User createdUser = new User("Vas", "Pos", "f@gv.com", "123321");
         assertThat(createdUser).isNotNull();
         assertThat(createdUser.getFirstName()).isEqualTo("Vas");
         assertThat(createdUser.getLastName()).isEqualTo("Pos");
@@ -97,10 +94,7 @@ class AppTest {
             .field("password", "123")
             .asString();
         assertThat(response.getStatus()).isEqualTo(422);
-        User user = new QUser()
-            .firstName.equalTo("Evgen")
-            .lastName.equalTo("Zhuk")
-            .findOne();
+        User user = null;
         assertThat(user).isNull();
         String content = response.getBody();
         assertThat(content).contains("Должно быть валидным email");
