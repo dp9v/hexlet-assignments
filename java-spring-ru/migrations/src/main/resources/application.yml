@@ -1,0 +1,29 @@
+server:
+  port: ${PORT:5001}
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  # Настраиваем подключение к базе данных
+  datasource:
+    url: jdbc:h2:./hexlet
+    username: sa
+    password: "pwd"
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+  # Настраиваем инструмент Liquibase
+  # Указываем путь к основному файлу миграции
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
+      settings:
+        web-allow-others: true
