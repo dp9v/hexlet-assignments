@@ -2,4 +2,5 @@
 /.fleet
 
 hexlet.mv.db
+hexlet.trace.db
 file-system.*
