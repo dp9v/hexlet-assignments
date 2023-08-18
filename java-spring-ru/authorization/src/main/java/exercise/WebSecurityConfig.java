@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.http.HttpMethod.DELETE;
+import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
@@ -28,9 +29,9 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(
                 requests -> requests
                     .requestMatchers("/").permitAll()
+                    .requestMatchers(POST, "/users").permitAll()
+                    .requestMatchers(DELETE, "/users/**").hasAuthority("ADMIN")
                     .requestMatchers("/users/**").hasAnyAuthority("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                    .requestMatchers(DELETE, "/users/**").hasAnyAuthority("ADMIN")
                     .anyRequest().authenticated()
             ).httpBasic()
             .and().userDetailsService(userDetailsService);
